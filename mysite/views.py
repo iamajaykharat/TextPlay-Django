@@ -13,6 +13,7 @@ def analyze(request):
     # Check Checkbox here
     rp = request.POST.get('removepunc', 'off')
     uc = request.POST.get('uppercase', 'off')
+    lc = request.POST.get('lowercase', 'off')
     nlr = request.POST.get('newlineremove', 'off')
     sr = request.POST.get('spaceremove', 'off')
     cc = request.POST.get('charcount', 'off')
@@ -37,6 +38,16 @@ def analyze(request):
             analyzed += char.upper()
         p = {'per': 'Make Uppercase', 'analysed_text': analyzed, 'total': ""}
         per += '| Make Uppercase'
+        djtext = analyzed
+        tot = ''
+
+    # Make lowercase
+    if lc == 'on':
+        analyzed = ""
+        for char in djtext:
+            analyzed += char.lower()
+        p = {'per': 'Make Lowercase', 'analysed_text': analyzed, 'total': ""}
+        per += '| Make Lowercase'
         djtext = analyzed
         tot = ''
 
@@ -73,7 +84,7 @@ def analyze(request):
         p = {'per': 'Count All Characters', 'analysed_text': analyzed, 'total': tot}
         per += '| Count All Characters'
 
-    if rp != 'on' and uc != 'on' and nlr != 'on' and sr != 'on' and cc != 'on':
+    if rp != 'on' and uc != 'on' and nlr != 'on' and sr != 'on' and cc != 'on'and lc != 'on':
         return HttpResponse("ERROR,Please select proper operation")
 
     p = {'per': per, 'analysed_text': analyzed, 'total': tot}
