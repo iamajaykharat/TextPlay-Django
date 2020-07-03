@@ -8,8 +8,24 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <!--Typed.js-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typed.js"></script>
 
     <title>AK TextPlay</title>
+    <style>
+        	.footer {
+   		position: fixed;
+   		left: 0;
+   		bottom: 0;
+   		width: 100%;
+   		height: 50px;
+   		background-color: black;
+   		color: white;
+   		text-align: center;
+   		display: block;
+		}
+
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,8 +60,8 @@
 <div class="container mt-2">
     <form action="analyze" method="post">{% csrf_token %}
         <div class="form-group">
-            <div class="card-header"><label for="exampleFormControlTextarea1"><strong>Enter Your Text
-                Here</strong></label></div>
+
+            <h3><span id="typed"></span></h3>
             <textarea class="form-control " name="text" id="exampleFormControlTextarea1" rows="8"></textarea>
         </div>
         <div class="card-header"><strong>Select Your Choices</strong></div>
@@ -70,6 +86,10 @@
             <label class="custom-control-label" for="customSwitch4">Remove Extra Spaces</label>
         </div>
         <div class="custom-control custom-switch">
+            <input type="checkbox" name="numberremover" class="custom-control-input" id="customSwitch5">
+            <label class="custom-control-label" for="customSwitch5">Remove Numbers</label>
+        </div>
+        <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" name="charcount" id="customSwitch5">
             <label class="custom-control-label" for="customSwitch5">Count All Characters</label>
         </div>
@@ -78,8 +98,29 @@
         </div>
     </form>
 </div>
-<footer class="footer mb-2 py-3">
-    <div class="container mb-2">
+
+ <div id="typed-strings">
+  </div>
+
+<script>
+
+ var typed = new Typed('#typed',{
+                    strings:["Play With Your Text Here!","Enter Your Text Here And See The Magic!"],
+                    backSpeed: 15,
+                    smartBackspace: true,
+                    backDelay: 1200,
+                    startDelay: 1000,
+                    typeSpeed: 25,
+                    loop: false,
+
+                  });
+
+</script>
+
+
+
+<footer class="footer pt-2">
+    <div class="container">
         <span class="text-muted">© 2020-2021 AK TextPlay, <a href="#">Privacy</a> · <a href="#">Terms</a></span>
     </div>
 </footer>
@@ -96,5 +137,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+
 </body>
 </html>
