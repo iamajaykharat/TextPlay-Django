@@ -17,6 +17,7 @@ def analyze(request):
     nlr = request.POST.get('newlineremove', 'off')
     sr = request.POST.get('spaceremove', 'off')
     cc = request.POST.get('charcount', 'off')
+    nr = request.POST.get('numberremover', 'off')
     per = ""
 
     # Punctuation remove
@@ -73,6 +74,18 @@ def analyze(request):
         djtext = analyzed
         tot = ''
 
+    # Number Remove
+    if nr == "on":
+        analyzed = ""
+        numbers = '0123456789'
+        for char in djtext:
+            if char not in numbers:
+                analyzed = analyzed + char
+        p = {'per': 'Remove Numbers', 'analysed_text': analyzed, 'total': ""}
+        per += '| Remove Numbers'
+        djtext = analyzed
+        tot = ''
+
     # Count characters
     if cc == 'on':
         to = 0
@@ -84,7 +97,7 @@ def analyze(request):
         p = {'per': 'Count All Characters', 'analysed_text': analyzed, 'total': tot}
         per += '| Count All Characters'
 
-    if rp != 'on' and uc != 'on' and nlr != 'on' and sr != 'on' and cc != 'on'and lc != 'on':
+    if rp != 'on' and uc != 'on' and nlr != 'on' and sr != 'on' and cc != 'on'and lc != 'on' and nr != 'on':
         return HttpResponse("ERROR,Please select proper operation")
 
     p = {'per': per, 'analysed_text': analyzed, 'total': tot}
