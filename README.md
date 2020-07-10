@@ -2,7 +2,7 @@
 ## A Web Application built using Django.
 
 It is a web application which is built using Django a Python Web Framework. As a name suggest it can be used to modify/analyze text. 
-Design of of this application is created using Bootstrap.
+Design of this application is created using Bootstrap.
 
 ## Features of Textplay
 
@@ -12,7 +12,7 @@ Design of of this application is created using Bootstrap.
 * Remove Extra Spaces.
 * Remove Numbers from text.
 * Counts Characters.
-* Remove new lines.
+* Remove new lines from text.
 
 ## Built in
 
